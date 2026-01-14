@@ -1,11 +1,25 @@
-<div align="center">
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+# NotifyHub - Enterprise Email Inventory
 
-  <h1>Built with AI Studio</h2>
+A professional-grade email inventory management and notification system.
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+## Features
+- **Inventory Management:** Full CRUD operations for Application Groups.
+- **Email Resolution:** Automatically resolves "To" and "CC" fields based on group roles.
+- **Rich Text Support:** Built-in Quill editor for professional announcements.
+- **Data Persistence:** Uses browser LocalStorage for client-side persistence.
+- **Search:** Global real-time search across all group names and emails.
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+## Local Development
+1. Clone the repository.
+2. Run `npx serve .` to start a local server.
+3. Open `http://localhost:3000`.
 
-</div>
+## Deployment
+This is a static application. You can deploy it by simply uploading the files to any static host:
+- **Vercel:** Connect your GitHub repo and deploy. No build command needed.
+- **Netlify:** Drag and drop the folder into the Netlify UI.
+- **GitHub Pages:** Enable Pages in your repository settings.
+
+## Security Note
+This application currently stores data in `LocalStorage`. For production environments requiring shared data between users, replace `services/db.ts` with a REST/GraphQL API.

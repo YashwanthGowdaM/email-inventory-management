@@ -1,0 +1,8 @@
+{
+  "name": "Enterprise Email Inventory",
+  "description": "A professional-grade email inventory management and notification system with automated recipient resolution and rich text capabilities.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

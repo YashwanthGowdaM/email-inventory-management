@@ -1,0 +1,12 @@
+
+{
+  "name": "notify-hub",
+  "version": "1.0.0",
+  "description": "Enterprise Email Inventory and Notification System",
+  "scripts": {
+    "start": "serve ."
+  },
+  "dependencies": {
+    "serve": "^14.2.4"
+  }
+}
