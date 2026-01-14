@@ -3,14 +3,31 @@ import { SendNotificationRequest } from '../types';
 
 export const notificationService = {
   send: async (request: SendNotificationRequest): Promise<void> => {
-    // Simulate API latency
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    // 1. Convert HTML body to Plain Text for mailto compatibility
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = request.body;
     
-    console.log('Sending Notification:', request);
+    // Simple conversion: replace <p> and <br> with newlines, then get textContent
+    const plainTextBody = tempDiv.innerText || tempDiv.textContent || "";
+
+    // 2. Construct the mailto URL
+    const mailtoParams = new URLSearchParams();
+    // URLSearchParams.toString() uses '+' for spaces, but mailto prefers %20
+    const encodedSubject = encodeURIComponent(request.subject);
+    const encodedBody = encodeURIComponent(plainTextBody);
     
-    // Simulate potential failure
-    if (Math.random() > 0.95) {
-      throw new Error('Service unavailable. Please try again later.');
-    }
+    const mailtoLink = `mailto:${request.to}?cc=${request.cc}&subject=${encodedSubject}&body=${encodedBody}`;
+
+    // 3. Trigger the email client
+    // We use a temporary anchor to ensure it works across all browsers without blocking popups
+    const link = document.createElement('a');
+    link.href = mailtoLink;
+    link.click();
+
+    console.log('Actual email triggered via mailto:', {
+      to: request.to,
+      cc: request.cc,
+      subject: request.subject
+    });
   }
 };
